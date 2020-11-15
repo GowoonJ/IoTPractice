@@ -17,7 +17,7 @@ for pin in pins:
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.LOW)
 
-@app.route("/")
+@app.route('/')
 def main():
     for pin in pins:
         pins[pin]['state'] = GPIO.input(pin)
@@ -26,7 +26,7 @@ def main():
     }
     return render_template('honeLED.html', **templateData)
 
-@app.route("/<changePin>/<action>")
+@app.route('/<changePin>/<action>')
 def action(changePin, action):
     changePin = int (changePin)
     deviceName = pins[changePin]['name']
@@ -40,5 +40,5 @@ def action(changePin, action):
     }
     return render_template('honeLED.html', **templateData)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0, port=80, debug = False')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80, debug = False)
